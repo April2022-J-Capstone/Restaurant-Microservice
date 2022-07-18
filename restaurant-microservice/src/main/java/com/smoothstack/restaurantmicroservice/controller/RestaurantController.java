@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class RestaurantController {
@@ -128,6 +129,11 @@ public class RestaurantController {
         }
     }
 
+    @PutMapping("/restaurant/{restaurantId}/banner")
+    public ResponseEntity<String> updateBanner(@PathVariable Integer restaurantId, @RequestParam("image") MultipartFile banner) {
+        return ResponseEntity.status(HttpStatus.OK).body(restaurantService.updateBanner(restaurantId, banner));
+    }
+
     @DeleteMapping(value = "/restaurant/{restaurantId}")
     public ResponseEntity<String>deleteRestaurant(@PathVariable Integer restaurantId) throws RestaurantNotFoundException{
         try {
@@ -137,6 +143,7 @@ public class RestaurantController {
         }
     }
 
+    /*
     @GetMapping(value = "/restaurant/search")
     public ResponseEntity<List<RestaurantInformation>> searchRestaurantsMenuItems(@RequestBody RestaurantsParams restaurantsSearch) {
         try {
@@ -147,5 +154,6 @@ public class RestaurantController {
             throw new RuntimeException(e);
         }
     }
+    */
 
 }
