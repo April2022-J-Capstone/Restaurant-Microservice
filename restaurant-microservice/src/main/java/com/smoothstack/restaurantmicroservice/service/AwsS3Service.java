@@ -160,7 +160,9 @@ public class AwsS3Service {
                     data.getMenuItemInformation().getName(),
                     data.getMenuItemInformation().getItemId()
             );
-
+            System.out.println("****************************************");
+            System.out.println(data.getMenuItemInformation().getItemId());
+            System.out.println("****************************************");
             ObjectMapper om = new ObjectMapper();
             byte[] bytes = om.writeValueAsBytes(data);
             ObjectMetadata omd = new ObjectMetadata();

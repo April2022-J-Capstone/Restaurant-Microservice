@@ -23,7 +23,7 @@
             <groupId>com.smoothstack</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>jar</scope>
+            <scope>provided</scope>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,10 +44,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <!--			<version>8.0.28</version>-->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <version>2.1.212</version>
+            <!--<scope>test</scope>-->
         </dependency>
 
 
@@ -89,6 +91,13 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-s3</artifactId>
             <version>1.12.268</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.1.0</version>
+            <type>maven-plugin</type>
         </dependency>
 
 	</dependencies>

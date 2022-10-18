@@ -38,6 +38,15 @@ public class RestaurantController {
         }
     }
 
+    @GetMapping(value = "/restaurant/owner/{username}")
+    public ResponseEntity getRestaurantByOwner(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok().body(restaurantService.getRestaurantInformationByOwner(username));
+        } catch (RestaurantNotFoundException restaurantNotFoundException) {
+            return ResponseEntity.badRequest().body(restaurantNotFoundException.getMessage());
+        }
+    }
+
 
     @PostMapping("/restaurant")
     public ResponseEntity<String>createRestaurant(@RequestBody RestaurantInformation restaurant) throws UserNotFoundException {

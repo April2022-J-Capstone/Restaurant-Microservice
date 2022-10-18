@@ -40,6 +40,17 @@ public class MenuItemController {
 
     }
 
+    @GetMapping("/restaurant/{restaurantId}/menuItem/{menuItemName}")
+    public ResponseEntity getMenuItem(@PathVariable Integer restaurantId, @PathVariable String menuItemName) {
+        try {
+            return ResponseEntity.ok().body(menuItemService.getMenuItemByRestaurantAndName(restaurantId, menuItemName));
+        } catch(MenuItemNotFoundException menuItemNotFoundException) {
+            return ResponseEntity.badRequest().body(menuItemNotFoundException.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PostMapping("/restaurant/menuItem")
     public ResponseEntity<String> createMenuItem(@RequestBody MenuItem menuItem) throws RestaurantNotFoundException {
         try {
@@ -95,6 +106,4 @@ public class MenuItemController {
             throw new RuntimeException(e);
         }
     }
-
-
 }

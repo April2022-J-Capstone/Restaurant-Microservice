@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -104,6 +105,16 @@ public class MenuItemService {
         } else {
             menuItemRepository.deleteById(menuItemId);
             return "Menu item has been deleted successfully";
+        }
+    }
+
+    @Transactional
+    public MenuItemInformation getMenuItemByRestaurantAndName(Integer restaurantId, String menuItemName) {
+        Optional<MenuItem> menuItem = menuItemRepository.findByRestaurants_idAndName(restaurantId, menuItemName);
+        if(menuItem.isPresent()) {
+            return getMenuItemInformation(menuItem.get().getId());
+        } else {
+            throw new MenuItemNotFoundException("Menu Item not found");
         }
     }
 

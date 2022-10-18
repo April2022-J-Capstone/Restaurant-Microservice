@@ -441,4 +441,13 @@ public class RestaurantService {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
+
+    public RestaurantInformation getRestaurantInformationByOwner(String username) {
+        Optional<Restaurant> restaurantOptional = restaurantRepository.findByOwner_userName(username);
+        if(restaurantOptional.isPresent()) {
+            return getRestaurantInformation(restaurantOptional.get().getId());
+        } else {
+            throw new RestaurantNotFoundException("Restaurant Owner Not Found");
+        }
+    }
 }

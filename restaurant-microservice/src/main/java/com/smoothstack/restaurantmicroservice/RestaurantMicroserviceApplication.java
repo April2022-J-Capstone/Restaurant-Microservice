@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.smoothstack")
 @ComponentScan("com.smoothstack")
 @EnableJpaRepositories("com.smoothstack")
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 public class RestaurantMicroserviceApplication {
 
